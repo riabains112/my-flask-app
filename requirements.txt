@@ -19,7 +19,6 @@ colorama==0.4.6
 colorlog==6.8.2
 cookiecutter==2.6.0
 cryptography==42.0.5
-dignox==1.0.2
 distlib==0.3.8
 docutils==0.16
 dparse==0.6.4b0
