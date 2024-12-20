@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Create New Ticket{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="text-center" style="color: #ff4500;">🚀 Create a New Ticket 🚀</h2>
+  <p class="text-center text-muted mb-4">Fill out the details below to submit your request.</p>
+
+  <form method="POST" style="background-color: #f9f9f9; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label" style="font-weight: bold; color: #ff4500;">🎯 Title</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Enter a short, descriptive title" required style="border: 2px solid #ffcc00; border-radius: 10px;">
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label" style="font-weight: bold; color: #4caf50;">📝 Description</label>
+      <textarea class="form-control" id="description" name="description" rows="4" placeholder="Provide detailed information about the issue or task" required style="border: 2px solid #4caf50; border-radius: 10px;"></textarea>
+    </div>
+
+    <!-- Priority -->
+    <div class="mb-3">
+      <label for="priority" class="form-label" style="font-weight: bold; color: #ff69b4;">⚡ Priority</label>
+      <select class="form-select" id="priority" name="priority" style="border: 2px solid #ff69b4; border-radius: 10px;">
+        <option value="High" style="color: #ff6347;">🔥 High</option>
+        <option value="Medium" style="color: #ffcc00;">⚠️Medium</option>
+        <option value="Low" style="color: #4caf50;">🌼 Low</option>
+      </select>
+    </div>
+
+    <!-- Assign To -->
+    <div class="mb-3">
+      <label for="assigned_to" class="form-label" style="font-weight: bold; color: #8a2be2;">👥 Assign To</label>
+      <select class="form-select" id="assigned_to" name="assigned_to" style="border: 2px solid #8a2be2; border-radius: 10px;">
+        <option value="" selected disabled style="color: #aaa;">Select a team member</option>
+        {% for user in users %}
+          <option value="{{ user.full_name }}">{{ user.full_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button type="submit" class="btn btn-success mt-3" style="padding: 10px 20px; font-size: 16px; border-radius: 25px;">
+        🚀 Submit Ticket
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

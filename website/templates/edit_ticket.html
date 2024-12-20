@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Ticket{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="text-center" style="color: #ff8c00;">✏️ Edit Ticket</h2>
+  <p class="text-center text-muted">Make changes to the ticket details below and click "Update" to save your changes.
+  </p>
+  <form method="POST"
+    style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{ ticket.title }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label" style="font-weight: bold; color: #4caf50;">📝 Description</label>
+      <textarea class="form-control" id="description" name="description" rows="4"
+        required>{{ ticket.description }}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="priority" class="form-label" style="font-weight: bold; color: #ff69b4;">⚡ Priority</label>
+      <select class="form-control" id="priority" name="priority">
+        <option value="High" {% if ticket.priority=="High" %}selected{% endif %}>🔥 High</option>
+        <option value="Medium" {% if ticket.priority=="Medium" %}selected{% endif %}>⚠️Medium</option>
+        <option value="Low" {% if ticket.priority=="Low" %}selected{% endif %}>🌼Low</option>
+      </select>
+    </div>
+    <!-- Assigned To -->
+    <div class="form-group">
+      <label for="assigned_to" class="form-label" style="font-weight: bold; color: #8a2be2;">👥 Assigned To</label>
+      <input type="text" class="form-control" id="assigned_to" name="assigned_to" value="{{ ticket.assigned_to }}"
+        required>
+    </div>
+    <!-- Status Dropdown -->
+    {% if user.full_name == ticket.assigned_to %}
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select class="form-select" id="status" name="status" required>
+        <option value="Open" {% if ticket.status=="Open" %}selected{% endif %}>Open</option>
+        <option value="In Progress" {% if ticket.status=="In Progress" %}selected{% endif %}>In Progress</option>
+        <option value="Closed" {% if ticket.status=="Closed" %}selected{% endif %}>Closed</option>
+      </select>
+    </div>
+    {% endif %}
+    <!-- Submit Button -->
+    <div class="mt-5 text-center">
+      <button type="submit" class="btn btn-warning" style="padding: 10px 20px; font-size: 16px; border-radius: 20px;">
+        💾 Update Ticket
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
